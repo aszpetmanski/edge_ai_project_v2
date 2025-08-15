@@ -11,4 +11,11 @@ try:
 except AttributeError:
     model = models.mobilenet_v3_large(pretrained=True)   # older torchvision
 
-torch.save(model.state_dict(), out_dir / "mobilenet_v3_large_imagenet_full.pth")
+save_path = out_dir / "mobilenet_v3_large_imagenet_full.pth"
+torch.save(model.state_dict(), save_path)
+
+# single final check + print
+if save_path.exists() and save_path.stat().st_size > 0:
+    print(f"OK: saved weights to {save_path} ({save_path.stat().st_size} bytes)")
+else:
+    raise RuntimeError("Save failed: file missing or empty.")
