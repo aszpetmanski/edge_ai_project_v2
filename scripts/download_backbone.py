@@ -19,5 +19,3 @@ if save_path.exists() and save_path.stat().st_size > 0:
     print(f"OK: saved weights to {save_path} ({save_path.stat().st_size} bytes)")
 else:
     raise RuntimeError("Save failed: file missing or empty.")
-
-print('elo')
